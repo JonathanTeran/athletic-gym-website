@@ -902,7 +902,8 @@ ul {
     font-size: 1.25rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
-    z-index: 999;
+    z-index: 998;
+    /* Lower than WhatsApp button */
 }
 
 #scrollToTop:hover {
@@ -1299,6 +1300,28 @@ ul {
         flex-direction: column;
         text-align: center;
     }
+
+    /* Fix image height on mobile */
+    .zone-image {
+        min-height: 250px;
+        height: 250px;
+    }
+
+    /* Reduce general padding */
+    .section-padding,
+    .testimonials,
+    .contact,
+    .cf-kids,
+    .pricing,
+    .leadership,
+    .benefits {
+        padding: var(--spacing-xl) 0;
+    }
+
+    /* Fix hero text sizes */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 769px) {
@@ -1357,7 +1380,8 @@ ul {
 
 @media (max-width: 768px) {
     .whatsapp-float {
-        bottom: 20px;
+        bottom: 80px;
+        /* Move up to avoid overlap with scroll-to-top */
         right: 20px;
         width: 55px;
         height: 55px;
