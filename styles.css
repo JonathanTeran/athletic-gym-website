@@ -1408,12 +1408,18 @@ ul {
 
 @media (max-width: 768px) {
     .whatsapp-float {
-        bottom: 80px;
-        /* Move up to avoid overlap with scroll-to-top */
+        bottom: 20px;
         right: 20px;
         width: 55px;
         height: 55px;
         font-size: 28px;
+    }
+
+    #scrollToTop {
+        right: auto;
+        left: 20px;
+        /* Move to left on mobile to avoid conflict */
+        bottom: 20px;
     }
 }
 
