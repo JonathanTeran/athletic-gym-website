@@ -1238,13 +1238,17 @@ ul {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background: white;
+        justify-content: center;
+        background: var(--gradient-dark);
+        /* Modern dark gradient */
         width: 100%;
+        height: calc(100vh - 70px);
+        /* Full remaining height */
         text-align: center;
-        transition: left var(--transition-base);
-        box-shadow: var(--shadow-lg);
-        padding: var(--spacing-lg) 0;
-        gap: 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 2rem;
+        gap: 2rem;
+        backdrop-filter: blur(10px);
     }
 
     .nav-menu.active {
@@ -1253,7 +1257,22 @@ ul {
 
     .nav-link {
         width: 100%;
-        padding: var(--spacing-md);
+        padding: 1rem;
+        font-size: 1.75rem;
+        /* Larger modern text */
+        font-weight: 700;
+        color: white;
+        /* White text on dark bg */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--primary-500);
+        padding-left: 10px;
+        background: rgba(198, 255, 0, 0.05);
+        border-color: var(--primary-500);
     }
 
     .mobile-toggle {
