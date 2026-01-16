@@ -1339,9 +1339,16 @@ ul {
         padding: var(--spacing-xl) 0;
     }
 
-    /* Fix hero text sizes */
+    /* Fix hero text sizes and overlap */
+    .hero-content {
+        padding-top: 120px;
+        /* Clear the navbar */
+    }
+
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        /* Smaller font for mobile fit */
+        margin-bottom: var(--spacing-md);
     }
 }
 
