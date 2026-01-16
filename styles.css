@@ -322,6 +322,8 @@ ul {
 
 .hero-title {
     font-family: var(--font-display);
+    color: white;
+    /* Ensure text is white */
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 900;
     line-height: 1.1;
