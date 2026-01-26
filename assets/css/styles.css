@@ -298,7 +298,7 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070') center/cover;
+    background: url('../img/hero-bg.jpg') center/cover;
     opacity: 0.15;
     z-index: 1;
 }
@@ -1837,7 +1837,9 @@ ul {
     .pricing-grid {
         grid-template-columns: 1fr;
     }
-}/* =====================================================
+}
+
+/* =====================================================
    INSTAGRAM SECTION
    ===================================================== */
 
@@ -1901,7 +1903,9 @@ ul {
     .instagram-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}/* Accessibility Utility */
+}
+
+/* Accessibility Utility */
 .sr-only {
     position: absolute;
     width: 1px;
