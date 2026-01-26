@@ -217,6 +217,23 @@ ul {
     background: var(--primary-500)
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-whatsapp {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--success);
+    transition: all var(--transition-base);
+}
+
+.nav-whatsapp:hover {
+    transform: scale(1.1);
+}
+
 .mobile-toggle {
     display: none;
     flex-direction: column;
@@ -1447,6 +1464,10 @@ ul {
 
     .mobile-toggle {
         display: flex
+    }
+
+    .nav-whatsapp {
+        display: block
     }
 
     .mobile-toggle.active span:nth-child(1) {
