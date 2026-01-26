@@ -464,15 +464,72 @@ ul {
     gap: var(--spacing-2xl)
 }
 
+.zone-card:nth-child(even) .zone-content {
+    order: -1;
+}
+
 .zone-card {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     gap: var(--spacing-xl);
     background: white;
     border-radius: var(--radius-2xl);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    transition: all var(--transition-slow)
+    transition: all var(--transition-slow);
+    position: relative;
+}
+
+.zone-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 10;
+    background:
+        linear-gradient(var(--primary-500), var(--primary-500)) top left / 0 4px no-repeat,
+        linear-gradient(var(--primary-500), var(--primary-500)) top right / 4px 0 no-repeat,
+        linear-gradient(var(--primary-500), var(--primary-500)) bottom right / 0 4px no-repeat,
+        linear-gradient(var(--primary-500), var(--primary-500)) bottom left / 4px 0 no-repeat;
+}
+
+.zone-card.revealed::after {
+    animation: drawBorder 1.5s ease-out forwards, fadeOutBorder 0.5s ease-in 2s forwards;
+    animation-delay: 0.5s, 2s;
+}
+
+@keyframes drawBorder {
+    0% {
+        background-size: 0 4px, 4px 0, 0 4px, 4px 0;
+    }
+
+    25% {
+        background-size: 100% 4px, 4px 0, 0 4px, 4px 0;
+    }
+
+    50% {
+        background-size: 100% 4px, 4px 100%, 0 4px, 4px 0;
+    }
+
+    75% {
+        background-size: 100% 4px, 4px 100%, 100% 4px, 4px 0;
+    }
+
+    100% {
+        background-size: 100% 4px, 4px 100%, 100% 4px, 4px 100%;
+    }
+}
+
+@keyframes fadeOutBorder {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 .zone-card:hover {
@@ -1108,6 +1165,18 @@ ul {
     object-fit: cover
 }
 
+.testimonial-author .avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-500);
+    font-size: 1.5rem;
+}
+
 .testimonial-author h3 {
     font-weight: 700;
     font-size: 1rem;
@@ -1342,9 +1411,7 @@ ul {
         font-size: 3.5rem
     }
 
-    .zones-grid {
-        grid-template-columns: 1fr 1fr
-    }
+
 
     .leadership-card {
         grid-template-columns: 1fr
@@ -1400,6 +1467,14 @@ ul {
 
     .zones-grid {
         grid-template-columns: 1fr
+    }
+
+    .zone-card {
+        grid-template-columns: 1fr
+    }
+
+    .zone-card:nth-child(even) .zone-content {
+        order: 0;
     }
 
     .cf-kids-content {
