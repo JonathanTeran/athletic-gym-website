@@ -41,15 +41,1718 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome for Icons -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
 
-    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        :root {
+            --primary-500: #c6ff00;
+            --primary-600: #b3e600;
+            --primary-700: #9fcc00;
+            --accent-400: #c6ff00;
+            --accent-500: #c6ff00;
+            --accent-600: #b3e600;
+            --dark-navy: #0a1128;
+            --dark-blue: #1a1f3a;
+            --gradient-primary: linear-gradient(135deg, #c6ff00 0%, #9fcc00 100%);
+            --gradient-accent: linear-gradient(135deg, #c6ff00 0%, #b3e600 100%);
+            --gradient-dark: linear-gradient(135deg, #0a1128 0%, #1a1f3a 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(10, 17, 40, 0.95) 0%, rgba(26, 31, 58, 0.90) 100%);
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: blur(10px);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1)
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-50);
+            overflow-x: hidden
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition-base)
+        }
+
+        ul {
+            list-style: none
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md)
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl)
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base)
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98)
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600
+        }
+
+        .nav-logo .logo-img {
+            height: 80px;
+            width: auto;
+            object-fit: contain
+        }
+
+        .nav-logo svg {
+            width: 2rem;
+            height: 2rem;
+            fill: #c6ff00;
+            /* Fallback for gradient */
+            color: #c6ff00;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--gray-700);
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color var(--transition-base)
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width var(--transition-base)
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--dark-navy)
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--primary-500)
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.375rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--gray-800);
+            transition: all var(--transition-base)
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-dark);
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23667eea" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,117.3C1248,96,1344,64,1392,48L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>'), var(--gradient-dark);
+            background-size: cover;
+            background-position: center;
+            overflow: hidden
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/img/hero-bg.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 1
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            opacity: 0.9;
+            z-index: 2
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: var(--spacing-2xl) var(--spacing-md)
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            color: white;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-lg);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 3vw, 1.375rem);
+            margin-bottom: var(--spacing-2xl);
+            opacity: 0.95;
+            line-height: 1.7;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-3xl)
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xl);
+            flex-wrap: wrap
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2)
+        }
+
+        .stat-item svg {
+            width: 2rem;
+            height: 2rem;
+            fill: #c6ff00;
+            /* original opacity was 0.9, can apply to path or svg */
+            opacity: 0.9;
+            color: #c6ff00;
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 0.875rem;
+            opacity: 0.85
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s infinite
+        }
+
+        .scroll-indicator svg {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+            opacity: 0.7;
+            fill: currentColor;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0)
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px)
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px)
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards
+        }
+
+        .fade-in-delay {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards
+        }
+
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards
+        }
+
+        .fade-in-delay-3 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+            white-space: nowrap
+        }
+
+        .btn-primary {
+            background: var(--primary-500);
+            color: var(--dark-navy);
+            box-shadow: var(--shadow-lg);
+            font-weight: 700
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(198, 255, 0, 0.5), var(--shadow-xl);
+            background: var(--primary-600)
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(198, 255, 0, 0.5);
+            backdrop-filter: blur(10px)
+        }
+
+        .btn-secondary:hover {
+            background: rgba(198, 255, 0, 0.15);
+            border-color: var(--primary-500)
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-500);
+            border: 2px solid var(--primary-500)
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-500);
+            color: var(--dark-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(198, 255, 0, 0.4)
+        }
+
+        .zones {
+            padding: var(--spacing-3xl) 0;
+            background: white
+        }
+
+        .zones-grid {
+            display: grid;
+            gap: var(--spacing-2xl)
+        }
+
+        .zone-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-slow)
+        }
+
+        .zone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-2xl)
+        }
+
+        .zone-image {
+            position: relative;
+            height: 100%;
+            min-height: 400px;
+            overflow: hidden;
+            background: var(--gradient-dark)
+        }
+
+        .zone-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow)
+        }
+
+        .zone-card:hover .zone-image img {
+            transform: scale(1.05)
+        }
+
+        .zone-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: white;
+            opacity: 0.3;
+            pointer-events: none
+        }
+
+        .zone-content {
+            padding: var(--spacing-xl)
+        }
+
+        .zone-content h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .zone-content p {
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-700);
+            line-height: 1.8
+        }
+
+        .zone-features {
+            margin: var(--spacing-lg) 0;
+            display: grid;
+            gap: var(--spacing-sm)
+        }
+
+        .zone-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--gray-700)
+        }
+
+        .zone-features svg {
+            color: var(--success);
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: currentColor;
+        }
+
+        .zone-quote {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-left: 4px solid var(--primary-500);
+            border-radius: var(--radius-md);
+            font-style: italic;
+            color: var(--gray-700)
+        }
+
+        .benefits {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%)
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl)
+        }
+
+        .benefit-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            text-align: center
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl)
+        }
+
+        .benefit-icon svg {
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl);
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-lg)
+        }
+
+        .benefit-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--gray-800)
+        }
+
+        .benefit-card p {
+            color: var(--gray-600);
+            line-height: 1.7
+        }
+
+        .pricing {
+            padding: var(--spacing-3xl) 0;
+            background: white
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl)
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            position: relative
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-500)
+        }
+
+        .pricing-card.featured {
+            background: var(--gradient-dark);
+            color: white;
+            border-color: var(--primary-500);
+            transform: scale(1.05)
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-8px)
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-lg)
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .pricing-header h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-xs)
+        }
+
+        .pricing-card.featured .pricing-header h3 {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .pricing-subtitle {
+            color: var(--gray-600)
+        }
+
+        .pricing-card.featured .pricing-subtitle {
+            color: rgba(255, 255, 255, 0.8)
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin-bottom: var(--spacing-xl)
+        }
+
+        .pricing-price .currency {
+            font-size: 2rem;
+            font-weight: 600;
+            vertical-align: super
+        }
+
+        .pricing-price .amount {
+            font-size: 4rem;
+            font-weight: 900;
+            font-family: var(--font-display)
+        }
+
+        .pricing-price .period {
+            font-size: 1.25rem;
+            color: var(--gray-600)
+        }
+
+        .pricing-card.featured .pricing-price .period {
+            color: rgba(255, 255, 255, 0.7)
+        }
+
+        .pricing-features {
+            margin-bottom: var(--spacing-xl);
+            display: grid;
+            gap: var(--spacing-sm)
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-xs) 0
+        }
+
+        .pricing-features svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: currentColor;
+        }
+
+        .pricing-features .fa-check {
+            color: var(--success)
+        }
+
+        .pricing-features .fa-times {
+            color: var(--gray-400)
+        }
+
+        .pricing-features .disabled {
+            color: var(--gray-400);
+            text-decoration: line-through
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md)
+        }
+
+        .leadership {
+            padding: var(--spacing-3xl) 0;
+            background: var(--gray-50)
+        }
+
+        .leadership-card {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1000px;
+            margin: 0 auto
+        }
+
+        .leadership-image {
+            position: relative;
+            min-height: 400px
+        }
+
+        .leadership-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .leadership-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg)
+        }
+
+        .leadership-content {
+            padding: var(--spacing-2xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .leadership-content h2 {
+            font-size: 1.5rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem
+        }
+
+        .leadership-content h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: var(--dark-navy)
+        }
+
+        .leadership-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-lg);
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-500)
+        }
+
+        .leadership-values {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg)
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-800)
+        }
+
+        .value-item i {
+            color: var(--primary-600)
+        }
+
+        .merchandise {
+            padding: var(--spacing-3xl) 0;
+            background: white
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            align-items: center
+        }
+
+        .merch-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200)
+        }
+
+        .merch-image {
+            position: relative;
+            height: 300px
+        }
+
+        .merch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .merch-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.875rem
+        }
+
+        .merch-content {
+            padding: var(--spacing-lg)
+        }
+
+        .merch-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs)
+        }
+
+        .merch-features {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem
+        }
+
+        .merch-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem
+        }
+
+        .merch-features svg {
+            color: var(--success);
+            width: 0.875rem;
+            height: 0.875rem;
+            fill: currentColor;
+        }
+
+        .merch-price {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: var(--spacing-md)
+        }
+
+        .merch-price .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark-navy)
+        }
+
+        .merch-price .note {
+            font-size: 0.875rem;
+            color: var(--gray-500)
+        }
+
+        .merch-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md)
+        }
+
+        .merch-info ul {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .merch-info li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            font-weight: 500
+        }
+
+        .merch-info svg {
+            font-size: 1.25rem;
+            color: var(--primary-600);
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        .merch-cta {
+            font-size: 0.875rem;
+            color: var(--gray-600)
+        }
+
+        .merch-cta a {
+            color: var(--primary-600);
+            font-weight: 600;
+            text-decoration: underline
+        }
+
+        .cf-kids {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)
+        }
+
+        .cf-kids-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center
+        }
+
+        .cf-kids-image {
+            position: relative;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl)
+        }
+
+        .cf-kids-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow)
+        }
+
+        .cf-kids-image:hover img {
+            transform: scale(1.05)
+        }
+
+        .kids-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--success);
+            box-shadow: var(--shadow-md)
+        }
+
+        .cf-kids-info h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-800)
+        }
+
+        .cf-kids-info p {
+            color: var(--gray-700);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .kids-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .kids-benefit-item {
+            display: flex;
+            gap: 1rem
+        }
+
+        .kids-benefit-item svg {
+            font-size: 1.5rem;
+            color: var(--success);
+            padding-top: 0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+
+        .kids-benefit-item h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--gray-800)
+        }
+
+        .kids-benefit-item p {
+            font-size: 0.875rem;
+            margin-bottom: 0
+        }
+
+        .kids-info-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--success)
+        }
+
+        .testimonials {
+            padding: var(--spacing-3xl) 0
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg)
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md)
+        }
+
+        .stars {
+            color: var(--warning);
+            margin-bottom: var(--spacing-sm)
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover
+        }
+
+        .testimonial-author h3 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 0
+        }
+
+        .testimonial-author span {
+            font-size: 0.875rem;
+            color: var(--gray-500)
+        }
+
+        .contact {
+            padding: var(--spacing-3xl) 0;
+            background: white
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl)
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: var(--spacing-lg)
+        }
+
+        .contact-icon svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-600);
+            font-size: 1.25rem;
+            flex-shrink: 0
+        }
+
+        .contact-item h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: var(--spacing-xl)
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-800);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base)
+        }
+
+        .social-links svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-500);
+            color: var(--dark-navy);
+            transform: translateY(-3px)
+        }
+
+        .contact-form-container {
+            background: var(--gray-50);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl)
+        }
+
+        .form-group {
+            margin-bottom: 1rem
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background: white;
+            font-family: inherit;
+            transition: all var(--transition-base)
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(198, 255, 0, 0.2)
+        }
+
+        .footer {
+            background: var(--dark-navy);
+            color: white;
+            padding: var(--spacing-3xl) 0 var(--spacing-lg)
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl)
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto
+        }
+
+        .footer-brand p {
+            color: var(--gray-400);
+            line-height: 1.6
+        }
+
+        .footer-links h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem
+        }
+
+        .footer-links ul {
+            display: grid;
+            gap: 0.75rem
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            transition: color var(--transition-base)
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-500)
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            border: none;
+            background: var(--dark-blue);
+            color: white
+        }
+
+        .newsletter-form button {
+            padding: 0.5rem 1rem;
+            background: var(--primary-500);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-base)
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-600)
+        }
+
+        .footer-bottom {
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray-500);
+            font-size: 0.875rem
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem
+        }
+
+        .footer-legal svg {
+            fill: currentColor;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .footer-legal a:hover {
+            color: white
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: all var(--transition-base)
+        }
+
+        .whatsapp-float svg {
+            width: 2rem;
+            height: 2rem;
+            fill: white;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl)
+        }
+
+        @media (max-width:1024px) {
+            .hero-title {
+                font-size: 3.5rem
+            }
+
+            .zones-grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .leadership-card {
+                grid-template-columns: 1fr
+            }
+
+            .leadership-image {
+                min-height: 300px
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media (max-width:768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: var(--spacing-3xl) var(--spacing-xl);
+                box-shadow: var(--shadow-2xl);
+                transition: right 0.3s ease
+            }
+
+            .nav-menu.active {
+                right: 0
+            }
+
+            .mobile-toggle {
+                display: flex
+            }
+
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px)
+            }
+
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0
+            }
+
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px)
+            }
+
+            .hero-title {
+                font-size: 2.5rem
+            }
+
+            .zones-grid {
+                grid-template-columns: 1fr
+            }
+
+            .cf-kids-content {
+                grid-template-columns: 1fr
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .instagram {
+            padding: var(--spacing-3xl) 0;
+            background: var(--gray-50)
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-xl)
+        }
+
+        .instagram-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border-radius: var(--radius-lg);
+            cursor: pointer
+        }
+
+        .instagram-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow)
+        }
+
+        .instagram-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-base)
+        }
+
+        .instagram-overlay svg {
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            fill: currentColor;
+        }
+
+        .instagram-item:hover img {
+            transform: scale(1.1)
+        }
+
+        .instagram-item:hover .instagram-overlay {
+            opacity: 1
+        }
+
+        .instagram-btn-container {
+            text-align: center;
+            margin-top: var(--spacing-xl)
+        }
+
+        @media (max-width:768px) {
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0
+        }
+    </style>
+    <!-- SVG Sprite -->
+    <svg style="display:none">
+        <defs>
+            <symbol id="icon-bars" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M16 132h416c8.8 0 16-7.2 16-16V76c0-8.8-7.2-16-16-16H16C7.2 60 0 67.2 0 76v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16z" />
+            </symbol>
+            <symbol id="icon-dumbbell" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                    d="M104 96H56c-13.3 0-24 10.7-24 24v104H8c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h24v104c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm528 128h-24v-104c0-13.3-10.7-24-24-24h-48c-13.3 0-24 10.7-24 24v272c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V288h24c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zM456 32h-48c-13.3 0-24 10.7-24 24v168H256V56c0-13.3-10.7-24-24-24h-48c-13.3 0-24 10.7-24 24v400c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V288h128v168c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24z" />
+            </symbol>
+            <symbol id="icon-running" viewBox="0 0 416 512">
+                <path fill="currentColor"
+                    d="M272 96c26.5 0 48-21.5 48-48S298.5 0 272 0s-48 21.5-48 48 21.5 48 48 48zM113.7 265.3l-59 34.6c-7.7 4.5-10.2 14.4-5.6 22 4.1 6.8 11.3 10.9 18.9 10.9 2.8 0 5.6-.6 8.3-1.7l54.4-22.3 38.6 89.2c-29.1 19.3-52.7 46.1-68.9 77.2-4.1 7.9-1 17.5 6.9 21.6 7.9 4.1 17.5 1 21.6-6.9 14.2-27.3 35.3-51 61.1-68.1l32.2 73.5c1.1 2.6 1.8 5.3 1.8 8.1v60.8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16V398c0-5.8-3.1-11.2-8.1-14.1l-60-35-23-95.2 60.3 15.6c9.7 2.5 19.8-1.7 25-10.2l51.5-84.6c4.6-7.6 2.2-17.5-5.4-22.1-7.6-4.6-17.5-2.2-22.1 5.4l-38.3 62.9-66.9-17.3 14.1-51.5c4-14.6-2.5-30-15.6-37L194.2 82c-15.3-8.2-34.4-1.9-41.8 13.9l-35 74.3c-2.9 6.2-4.4 12.9-4.4 19.8 0 12.6 5 24.5 13.9 33.4l50.8 50.8-3.1 7.2c-4.5 10.3-25.2 57.5-60.9 78.6z" />
+            </symbol>
+            <symbol id="icon-bicycle" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                    d="M400 96a48 48 0 1 0 -48-48 48.05 48.05 0 0 0 48 48zm-4 123a91.31 91.31 0 0 0 -22.58-2.83c-23.74 0-46.06 9-63.15 25.13l-47.53 45.18a38.64 38.64 0 0 0 3.79 55.43l13.67 11.59-33.68 59.86a24 24 0 0 0 10.51 32 23.94 23.94 0 0 0 32.06-10.51l44.8-79.64a24 24 0 0 0 -9.19-32.22l-12-10.2 27.5-26.15a43.5 43.5 0 0 1 30.15-12 43.12 43.12 0 0 1 10.9 1.41l39.26 10.1a24 24 0 0 0 29.82-17.21l16.29-63.29c3.09-11.83-3.66-24-15.42-27.76l-50.62-16.14a24 24 0 1 0 -14.58 45.7l23.58 7.52L396 219zM112 256a112 112 0 1 0 112 112 112.12 112.12 0 0 0 -112-112zm0 176a64 64 0 1 1 64-64 64.07 64.07 0 0 1 -64 64zm416-176a112 112 0 1 0 112 112 112.12 112.12 0 0 0 -112-112zm0 176a64 64 0 1 1 64-64 64.07 64.07 0 0 1 -64 64z" />
+            </symbol>
+            <symbol id="icon-heartbeat" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M320.2 243.8l-49.7 99.4c-6 12.1-23.4 11.7-28.9-.6l-56.9-126.3-30 71.7H60.6l182.5 186.5c7.1 7.3 18.6 7.3 25.7 0L451.4 288H342.3l-22.1-44.2zM473.7 73.9l-2.4-2.5c-51.5-52.6-135.8-52.6-187.4 0L256 100l-27.9-28.5c-51.5-52.6-135.9-52.6-187.4 0l-2.4 2.4C-10.4 123.7-12.5 203 31 256h102.4l35.9-86.2c5.4-12.9 23.6-13.2 29.4-.4l58.2 129.3 49-97.9c5.9-11.8 22.7-11.8 28.6 0l27.6 55.2H481c43.5-53 41.4-132.3-7.3-182.1z" />
+            </symbol>
+            <symbol id="icon-music" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M470.38 1.51L150.41 96A32 32 0 0 0 128 126.51v261.41A139 139 0 0 0 96 384c-53 0-96 28.66-96 64s43 64 96 64 96-28.66 96-64V214.32l256-75v184.61a138.4 138.4 0 0 0-32-3.93c-53 0-96 28.66-96 64s43 64 96 64 96-28.65 96-64V32a32 32 0 0 0-41.62-30.49z" />
+            </symbol>
+            <symbol id="icon-check" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" />
+            </symbol>
+            <symbol id="icon-times" viewBox="0 0 352 512">
+                <path fill="currentColor"
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.19 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.19 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" />
+            </symbol>
+            <symbol id="icon-star" viewBox="0 0 576 512">
+                <path fill="currentColor"
+                    d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+            </symbol>
+            <symbol id="icon-phone" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l70.6 56.8C358.7 277.6 277.6 358.7 209 253.4l56.8-70.6c6.7-8.3 9.4-19.8 5.2-29.6l-24-104C244.4 37.9 233.1 32 221.8 34.6l-112 48C90.1 87.2 80 107.9 80 130c0 193.3 156.7 350 350 350 22.1 0 42.8-10.1 47.4-29.8l24-112c2.6-11.3-3.3-22.9-13.9-27.5z" />
+            </symbol>
+            <symbol id="icon-envelope" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" />
+            </symbol>
+            <symbol id="icon-map-marker-alt" viewBox="0 0 384 512">
+                <path fill="currentColor"
+                    d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z" />
+            </symbol>
+            <symbol id="icon-arrow-up" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" />
+            </symbol>
+            <symbol id="icon-whatsapp" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </symbol>
+            <symbol id="icon-instagram" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+            </symbol>
+            <symbol id="icon-check-circle" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628 0z" />
+            </symbol>
+            <symbol id="icon-arrow-right" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z" />
+            </symbol>
+            <symbol id="icon-users" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                    d="M96 224c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm448 0c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-32 32h-64c-17.6 0-33.5 7.1-45.1 18.6 40.3 35.6 68.9 86.1 79.2 143.6 15.3 4.1 31.5 6.4 48.1 6.4 88.4 0 160-71.6 160-160v-8.8c0-39.7-8.1-77.9-22.6-112.5-3.3-8-12.7-11.8-20.9-8.5l-64 25.6c-5.9 2.4-9.8 8.1-9.8 14.5V256zm-192-32H192c-53 0-96 43-96 96v32c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48v-32c0-53-43-96-96-96zM128 424.6c10.3-57.5 38.9-108 79.2-143.6-11.6-11.5-27.5-18.6-45.1-18.6h-64v-8.8c0-6.4-3.9-12.1-9.8-14.5l-64-25.6c-8.2-3.3-17.6.5-20.9 8.5C1.8 259.6-6.3 297.8-6.3 337.5v8.8c0 88.4 71.6 160 160 160 16.6 0 32.8-2.3 48.1-6.4z" />
+            </symbol>
+            <symbol id="icon-trophy" viewBox="0 0 576 512">
+                <path fill="currentColor"
+                    d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 63.4 100.7 41.5 28.7 90.4 51.3 126.9 66.5 7.7 27.3 22.5 52.8 45.7 75V432h-48c-17.7 0-32 14.3-32 32s14.3 32 32 32h192c17.7 0 32-14.3 32-32s-14.3-32-32-32h-48V386.2c23.2-22.2 38-47.7 45.7-75 36.5-15.1 85.3-37.8 126.9-66.5C553.5 216.4 576 179.7 576 144V88c0-13.3-10.7-24-24-24zM48 144V96h80v107.8c-23.7-16-43.1-34.6-56.7-50.5-13.6-15.6-23.3-37.8-23.3-65.3zm240 220c-39.7 0-72-35.8-72-80V64h144v220c0 44.2-32.3 80-72 80zm184-220c0 27.5-9.7 49.7-23.3 65.3-13.6 15.9-33 34.5-56.7 50.5V96h80v48z" />
+            </symbol>
+            <symbol id="icon-chevron-down" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z" />
+            </symbol>
+            <symbol id="icon-user-tie" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
+            </symbol>
+            <symbol id="icon-medal" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M224 0c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64s64-28.7 64-64V64c0-35.3-28.7-64-64-64zm0 64c8.8 0 16 7.2 16 16v368c0 8.8-7.2 16-16 16s-16-7.2-16-16V80c0-8.8 7.2-16 16-16zM48 64c-26.5 0-48 21.5-48 48v256c0 26.5 21.5 48 48 48h64V64H48zm352 0v352h64c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48h-64z" />
+            </symbol>
+            <symbol id="icon-clock" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z" />
+            </symbol>
+            <symbol id="icon-spa" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M284.15 401.78l15.15-46.6A143.91 143.91 0 0 0 318.9 308c-6.19-20.47-5.59-39.73 3.51-54.89 12-20.1 36.63-28.71 63.38-27.24 37.89 2.08 72 26 82.5 58.12 12.09 37.19-5.11 86.82-35.1 118.42a144.17 144.17 0 0 1-52.61 36.19l-9.94 4.09 13.56 16.92c30.29 37.81 12.42 94.4-35.95 110.09-29.35 9.52-58.46-9.14-68.41-39.77l-15-46.16c-13.63-41.94 1.34-87 36.08-107.51-9.35-7-14.49-14-16.67-21.36zm-64.84-60.55l-21.09-54.34a144 144 0 0 0-24.89-41.59c-15-16-31.95-23.82-49.49-21.65-22.9 2.82-42.34 18.66-51.46 43.61-12.91 35.34 1.39 84.15 23.49 119.53a144 144 0 0 1 29 55.45l3.82 14.86-19.12 10.22C59.27 493.57 6 525 6 565c0 30 22.82 55.6 53.66 59.88 29.8 4.14 56.63-12.38 67.89-41.37l21.09-54.35c16.3-42 12.87-89.28-9.42-128.53 10.32-4.57 18.69-10.15 28.59-17.67l51.5-39.18zm86-218.4l14-64.09A143.88 143.88 0 0 0 317.07 19c-20.89-5.18-40 .49-53 11.23-17.21 14.28-22.29 40.69-17 66.86 7.43 36.71 43.43 73.16 83.33 92.51a144 144 0 0 1 56 31.9l8.69 8.24 7.07-20.49c15.8-45.74 72.88-51.05 97.46-13.43 14.93 22.86 8.27 57.37-14.61 73l-14 64.1c-10.22 46.73-51.65 77.72-96.88 72.76-11.45-1.26-20.2-5.4-28.79-13.93z" />
+            </symbol>
+            <symbol id="icon-mobile-alt" viewBox="0 0 320 512">
+                <path fill="currentColor"
+                    d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z" />
+            </symbol>
+            <symbol id="icon-child" viewBox="0 0 352 512">
+                <path fill="currentColor"
+                    d="M120 72c0-39.766 32.234-72 72-72s72 32.234 72 72c0 39.766-32.234 72-72 72s-72-32.234-72-72zm252.28 176.32c-39.76 0-77.92 15.22-106.32 42.66l-18 17.4-18-17.4c-28.4-27.44-66.56-42.66-106.32-42.66-22.7 0-44.5 4.96-64.6 14.16-16.7 7.7-27.04 24.3-27.04 42.64v206.88c0 17.7 14.3 32 32 32h112c17.7 0 32-14.3 32-32V360h32v152c0 17.7 14.3 32 32 32h112c17.7 0 32-14.3 32-32V291.12c0-18.34-10.34-34.94-27.04-42.64-20.1-9.2-41.9-14.16-64.6-14.16z" />
+            </symbol>
+            <symbol id="icon-heart" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
+            </symbol>
+            <symbol id="icon-brain" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M208 0c-29.9 0-54.7 20.6-61.6 48.2c-.5 0-1.1-.2-1.6-.2c-35.3 0-64 28.7-64 64c0 4.8.6 9.5 1.7 14C52.5 138 32 166.6 32 200c0 12.6 3.2 24.3 8.3 34.9C16 256.9 0 281.8 0 312c0 35.3 28.7 64 64 64c8.7 0 16-7 16-16s-7.3-16-16-16c-17.7 0-32-14.3-32-32c0-17.7 14.3-32 32-32c1.5 0 3 .1 4.5.3c-1.2-5.3-1.8-10.8-1.8-16.3c0-26.5 21.5-48 48-48c1.3 0 2.6 0 3.9 .1c-1.7-6-2.6-12.4-2.6-18.7c0-35.3 28.7-64 64-64c.3 0 .7 0 1 0c-3.1-4.7-4.8-10-4.8-15.6c0-15.1 10.8-27.7 25.1-30.8c3.9-22.9 23.8-40.4 47.7-40.4z" />
+            </symbol>
+            <symbol id="icon-shield-alt" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22.9 10.4 35.3 29.4 33.3 53.6c-4.2 51.5-18.8 141.1-66.7 217.1c-32.9 52.2-76.6 93-122.9 119.2c-12.8 7.3-28.7 7.3-41.5 0c-46.3-26.2-90-67-122.9-119.2c-47.9-76-62.5-165.6-66.7-217.1c-2-24.2 10.4-43.2 33.3-53.6L242.6 2.9C246.8 1 251.4 0 256 0z" />
+            </symbol>
+            <symbol id="icon-fire" viewBox="0 0 384 512">
+                <path fill="currentColor"
+                    d="M168.3 32.7c3.9-12.2 21.5-11.6 24.3 .9c12.3 55 52.2 87 53.8 88.4c.1 .1 .3 .2 .4 .3c1.7 1.6 4.3 1.1 5.4-1.1c.5-.9 .5-2 0-2.9c-2.3-4.4-6-13.6-6-24.8c0-33.5 22.8-62.9 55.1-70.9c2.3-.6 4.6 1.1 4.6 3.5c0 1.2-.5 2.4-1.4 3.2c-13.6 12-20.7 29.5-20.7 47.9c0 14.3 4.3 28.2 12.4 39.8c1 1.4 3 1.6 4.2 .4c7.8-7.7 14.2-16.7 18.7-26.7c3-6.7 12.3-7.3 16.1-.9c19 32 31.3 69.2 31.3 109.3c0 97.2-78.8 176-176 176S16 295.2 16 198c0-59.5 28.2-112.5 72.3-145c2.3-1.7 5.5-1.1 7.1 1.3c1.7 2.5 1.1 5.9-1.3 7.7C67 82 56 112 56 144c0 13.9 1.8 27.3 5.1 40c1.2 4.6 7.7 5.1 9.6 .7c7-16.5 20.3-29.7 36.6-36.4c2.4-1 3.5-3.8 2.6-6.2c-6.1-16.1-9.9-33.7-9.9-52c0-18.7 4-36.3 11-52.4c3.3-7.5 11.2-8.5 14.9-3.2c6.1 8.8 13.5 16.7 22.1 23.3c3.1 2.3 7.5 .5 7.5-3.3c0-8.9 4-17.6 10.9-23.7z" />
+            </symbol>
+            <symbol id="icon-handshake" viewBox="0 0 640 512">
+                <path fill="currentColor"
+                    d="M144 208c0-17.7-14.3-32-32-32H80V128c0-17.7-14.3-32-32-32S16 110.3 16 128v48H12c-6.6 0-12 5.4-12 12s5.4 12 12 12h4c17.7 0 32 14.3 32 32v64c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V208zm352 64h-32c-17.7 0-32-14.3-32-32V176c0-17.7-14.3-32-32-32H368c-17.7 0-32-14.3-32-32s14.3-32 32-32h32c17.7 0 32 14.3 32 32v48h32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32zM280 208c0 17.7-14.3 32-32 32H176v64c0 17.7 14.3 32 32 32h72c17.7 0 32-14.3 32-32V208H280z" />
+            </symbol>
+            <symbol id="icon-tshirt" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M208 0c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56zM112 110.6C123.6 136.2 149.1 152 176 152h64c26.9 0 52.4-15.8 64-41.4V464c0 26.5-21.5 48-48 48H160c-26.5 0-48-21.5-48-48V110.6zM0 136.1C0 125.7 6.9 116.6 16.9 113.1l64-22.4C87.3 88.5 94 93.3 96.6 100.2L128 184v24c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V136.1zM496 136.1v71.9c0 13.3-10.7 24-24 24H392c-13.3 0-24-10.7-24-24V184l31.4-83.8c2.6-6.9 9.3-11.7 16.6-9.5l64 22.4c10 3.5 16.9 12.6 16.9 23.1z" />
+            </symbol>
+            <symbol id="icon-shopping-bag" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M112 112c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v16h8c22.1 0 40 17.9 40 40v304c0 22.1-17.9 40-40 40H128c-22.1 0-40-17.9-40-40V168c0-22.1 17.9-40 40-40h8V112zm64 16h64c0-17.7-14.3-32-32-32s-32 14.3-32 32z" />
+            </symbol>
+            <symbol id="icon-socks" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M30 32c-16.6 0-30 13.4-30 30V480c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V160H224c17.7 0 32-14.3 32-32V32H30zM416 128V32H288v96c0 17.7 14.3 32 32 32H416z" />
+            </symbol>
+            <symbol id="icon-gift" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M48 112c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v32H48V112zm160 0c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v32H208V112zM32 192H208v288H48c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32zm448 0c17.7 0 32 14.3 32 32v224c0 17.7-14.3 32-32 32H256V192H480z" />
+            </symbol>
+            <symbol id="icon-info-circle" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248-248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
+            </symbol>
+            <symbol id="icon-paper-plane" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+            </symbol>
+            <symbol id="icon-facebook" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M504 256C504 119 393 8 256 8S8 119 8 256c0 121.3 87 222.8 202 243.3V327.7h-53V256h53v-47c0-54.7 33.4-86.7 83-86.7 23.8 0 46.4 1.8 51.7 2.6V180H316c-27.8 0-37.5 17.2-37.5 40v36h62l-8.1 71.7h-53.9v171.6C417 478.8 504 377.3 504 256z" />
+            </symbol>
+            <symbol id="icon-youtube" viewBox="0 0 576 512">
+                <path fill="currentColor"
+                    d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z" />
+            </symbol>
+            <symbol id="icon-tiktok" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <script src="assets/js/script.js" defer></script>
 
     <!-- Schema.org JSON-LD for Local Business -->
     <script type="application/ld+json">
@@ -135,7 +1838,9 @@
             <div class="hero-buttons fade-in-delay-2">
                 <a href="#planes" class="btn btn-primary">
                     <span>Únete Ahora</span>
-                    <i class="fas fa-arrow-right"></i>
+                    <svg class="icon">
+                        <use href="#icon-arrow-right"></use>
+                    </svg>
                 </a>
                 <a href="#zonas" class="btn btn-secondary">
                     <span>Conoce Nuestras Zonas</span>
@@ -143,21 +1848,27 @@
             </div>
             <div class="hero-stats fade-in-delay-3">
                 <div class="stat-item">
-                    <i class="fas fa-users"></i>
+                    <svg class="icon">
+                        <use href="#icon-users"></use>
+                    </svg>
                     <div>
                         <strong>5,000+</strong>
                         <span>Miembros Activos</span>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-trophy"></i>
+                    <svg class="icon">
+                        <use href="#icon-trophy"></use>
+                    </svg>
                     <div>
                         <strong>10 Años</strong>
                         <span>De Experiencia</span>
                     </div>
                 </div>
                 <div class="stat-item">
-                    <i class="fas fa-star"></i>
+                    <svg class="icon">
+                        <use href="#icon-star"></use>
+                    </svg>
                     <div>
                         <strong>4.9/5</strong>
                         <span>Valoración</span>
@@ -166,7 +1877,9 @@
             </div>
         </div>
         <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
+            <svg class="icon">
+                <use href="#icon-chevron-down"></use>
+            </svg>
         </div>
     </section>
 
@@ -186,7 +1899,9 @@
                             alt="Zona de Pesas y Musculación en Mapasingue - Athletic Gym" loading="lazy" width="400"
                             height="400">
                         <div class="zone-overlay">
-                            <i class="fas fa-dumbbell"></i>
+                            <svg class="icon">
+                                <use href="#icon-dumbbell"></use>
+                            </svg>
                         </div>
                     </div>
                     <div class="zone-content">
@@ -196,10 +1911,18 @@
                             repetición. Nuestra zona de pesas está equipada con tecnología de última generación para
                             desarrollar tu fuerza, disciplina y mejor versión física.</p>
                         <ul class="zone-features">
-                            <li><i class="fas fa-check-circle"></i> Equipamiento profesional Hammer Strength</li>
-                            <li><i class="fas fa-check-circle"></i> Barras olímpicas y discos de competición</li>
-                            <li><i class="fas fa-check-circle"></i> Mancuernas de 2.5kg a 50kg</li>
-                            <li><i class="fas fa-check-circle"></i> Racks de sentadillas y press banca</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Equipamiento profesional Hammer Strength</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Barras olímpicas y discos de competición</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Mancuernas de 2.5kg a 50kg</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Racks de sentadillas y press banca</li>
                         </ul>
                         <blockquote class="zone-quote">
                             "Cada gota de sudor es una inversión en tu cuerpo y tu confianza. Cada serie cuenta. Cada
@@ -215,7 +1938,9 @@
                             alt="Clases Funcionales y Crossfit en Guayaquil - Athletic Gym" loading="lazy" width="400"
                             height="300">
                         <div class="zone-overlay">
-                            <i class="fas fa-running"></i>
+                            <svg class="icon">
+                                <use href="#icon-running"></use>
+                            </svg>
                         </div>
                     </div>
                     <div class="zone-content">
@@ -225,10 +1950,18 @@
                             clases funcionales combinan ejercicios dinámicos que mejoran fuerza, resistencia,
                             coordinación y agilidad en sesiones llenas de motivación.</p>
                         <ul class="zone-features">
-                            <li><i class="fas fa-check-circle"></i> Clases para todos los niveles</li>
-                            <li><i class="fas fa-check-circle"></i> CrossFit y entrenamiento funcional</li>
-                            <li><i class="fas fa-check-circle"></i> TRX y ejercicios con peso corporal</li>
-                            <li><i class="fas fa-check-circle"></i> Entrenadores certificados</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Clases para todos los niveles</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> CrossFit y entrenamiento funcional</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> TRX y ejercicios con peso corporal</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Entrenadores certificados</li>
                         </ul>
                         <blockquote class="zone-quote">
                             "Aquí te mueves como fuiste hecho para moverte: libre, fuerte y con propósito."
@@ -243,7 +1976,9 @@
                             alt="Intense Cycling y Spinning en Guayaquil - Athletic Gym" loading="lazy" width="400"
                             height="300">
                         <div class="zone-overlay">
-                            <i class="fas fa-bicycle"></i>
+                            <svg class="icon">
+                                <use href="#icon-bicycle"></use>
+                            </svg>
                         </div>
                     </div>
                     <div class="zone-content">
@@ -253,10 +1988,18 @@
                             entonces Intense Cycling es para ti. Nuestras sesiones te llevan al límite mientras
                             disfrutas de una experiencia grupal electrizante.</p>
                         <ul class="zone-features">
-                            <li><i class="fas fa-check-circle"></i> Bicicletas de spinning profesionales</li>
-                            <li><i class="fas fa-check-circle"></i> Sistema de iluminación LED ambiental</li>
-                            <li><i class="fas fa-check-circle"></i> Sonido envolvente de alta calidad</li>
-                            <li><i class="fas fa-check-circle"></i> Monitores de frecuencia cardíaca</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Bicicletas de spinning profesionales</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Sistema de iluminación LED ambiental</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Sonido envolvente de alta calidad</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Monitores de frecuencia cardíaca</li>
                         </ul>
                         <blockquote class="zone-quote">
                             "Cada pedaleo es un paso más cerca de tu mejor versión. No te dejaremos rendirte."
@@ -271,7 +2014,9 @@
                             alt="Zona Cardio con Maquinaria Life Fitness - Athletic Gym" loading="lazy" width="400"
                             height="300">
                         <div class="zone-overlay">
-                            <i class="fas fa-heartbeat"></i>
+                            <svg class="icon">
+                                <use href="#icon-heartbeat"></use>
+                            </svg>
                         </div>
                     </div>
                     <div class="zone-content">
@@ -281,10 +2026,18 @@
                             de cardio es el lugar perfecto para comenzar o complementar tu transformación con
                             equipamiento de última generación.</p>
                         <ul class="zone-features">
-                            <li><i class="fas fa-check-circle"></i> Caminadoras con pantallas táctiles</li>
-                            <li><i class="fas fa-check-circle"></i> Elípticas y escaladoras Life Fitness</li>
-                            <li><i class="fas fa-check-circle"></i> Remo ergométrico Concept2</li>
-                            <li><i class="fas fa-check-circle"></i> Monitores de TV individuales</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Caminadoras con pantallas táctiles</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Elípticas y escaladoras Life Fitness</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Remo ergométrico Concept2</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Monitores de TV individuales</li>
                         </ul>
                         <blockquote class="zone-quote">
                             "Cada paso te acerca a un cuerpo más saludable, más ágil y más feliz."
@@ -298,7 +2051,9 @@
                         <img src="assets/img/dance-zone.jpg" alt="Clases de Baile y Zumba en Guayaquil - Athletic Gym"
                             loading="lazy" width="400" height="300">
                         <div class="zone-overlay">
-                            <i class="fas fa-music"></i>
+                            <svg class="icon">
+                                <use href="#icon-music"></use>
+                            </svg>
                         </div>
                     </div>
                     <div class="zone-content">
@@ -308,10 +2063,18 @@
                             explosivas clases de baile donde el cardio se mezcla con alegría, ritmo y una comunidad que
                             vibra contigo.</p>
                         <ul class="zone-features">
-                            <li><i class="fas fa-check-circle"></i> Zumba, reggaetón y ritmos latinos</li>
-                            <li><i class="fas fa-check-circle"></i> Dance Fitness y coreografías modernas</li>
-                            <li><i class="fas fa-check-circle"></i> Hip hop y urbano</li>
-                            <li><i class="fas fa-check-circle"></i> Instructores profesionales certificados</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Zumba, reggaetón y ritmos latinos</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Dance Fitness y coreografías modernas</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Hip hop y urbano</li>
+                            <li><svg class="icon">
+                                    <use href="#icon-check-circle"></use>
+                                </svg> Instructores profesionales certificados</li>
                         </ul>
                         <blockquote class="zone-quote">
                             "Aquí sudas, sonríes y te transformas. Sin juicios, solo energía que contagia."
@@ -333,7 +2096,9 @@
             <div class="benefits-grid">
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-user-tie"></i>
+                        <svg class="icon">
+                            <use href="#icon-user-tie"></use>
+                        </svg>
                     </div>
                     <h3>Entrenadores Expertos</h3>
                     <p>Personal certificado y apasionado que te guía en cada paso de tu transformación con planes
@@ -342,7 +2107,9 @@
 
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-medal"></i>
+                        <svg class="icon">
+                            <use href="#icon-medal"></use>
+                        </svg>
                     </div>
                     <h3>Equipamiento Premium</h3>
                     <p>Máquinas de última generación de marcas líderes como Life Fitness, Hammer Strength y Technogym.
@@ -351,7 +2118,9 @@
 
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-clock"></i>
+                        <svg class="icon">
+                            <use href="#icon-clock"></use>
+                        </svg>
                     </div>
                     <h3>Horarios Flexibles</h3>
                     <p>Abierto de 5:00 AM a 11:00 PM todos los días. Entrena cuando mejor te convenga.</p>
@@ -359,7 +2128,9 @@
 
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
+                        <svg class="icon">
+                            <use href="#icon-users"></use>
+                        </svg>
                     </div>
                     <h3>Comunidad Motivadora</h3>
                     <p>Únete a una familia fitness que te impulsa, celebra tus logros y te mantiene motivado.</p>
@@ -367,7 +2138,9 @@
 
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-spa"></i>
+                        <svg class="icon">
+                            <use href="#icon-spa"></use>
+                        </svg>
                     </div>
                     <h3>Instalaciones Completas</h3>
                     <p>Vestuarios amplios, duchas, lockers, área de estiramiento y zona de descanso para tu comodidad.
@@ -376,7 +2149,9 @@
 
                 <div class="benefit-card reveal-on-scroll">
                     <div class="benefit-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <svg class="icon">
+                            <use href="#icon-mobile-alt"></use>
+                        </svg>
                     </div>
                     <h3>App Móvil</h3>
                     <p>Reserva clases, sigue tu progreso y accede a entrenamientos desde tu smartphone.</p>
@@ -399,7 +2174,9 @@
                     <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800&h=600&fit=crop"
                         alt="Niños entrenando en Athletic Gym" loading="lazy" width="800" height="600">
                     <div class="kids-badge">
-                        <i class="fas fa-child"></i>
+                        <svg class="icon">
+                            <use href="#icon-child"></use>
+                        </svg>
                         <span>CF Kids</span>
                     </div>
                 </div>
@@ -413,28 +2190,36 @@
 
                     <div class="kids-benefits">
                         <div class="kids-benefit-item">
-                            <i class="fas fa-heart"></i>
+                            <svg class="icon">
+                                <use href="#icon-heart"></use>
+                            </svg>
                             <div>
                                 <h4>Salud Integral</h4>
                                 <p>Desarrollo cardiovascular y muscular apropiado para cada edad</p>
                             </div>
                         </div>
                         <div class="kids-benefit-item">
-                            <i class="fas fa-users"></i>
+                            <svg class="icon">
+                                <use href="#icon-users"></use>
+                            </svg>
                             <div>
                                 <h4>Trabajo en Equipo</h4>
                                 <p>Aprenden valores, respeto y compañerismo</p>
                             </div>
                         </div>
                         <div class="kids-benefit-item">
-                            <i class="fas fa-brain"></i>
+                            <svg class="icon">
+                                <use href="#icon-brain"></use>
+                            </svg>
                             <div>
                                 <h4>Disciplina Mental</h4>
                                 <p>Mejora concentración, autoestima y confianza</p>
                             </div>
                         </div>
                         <div class="kids-benefit-item">
-                            <i class="fas fa-shield-alt"></i>
+                            <svg class="icon">
+                                <use href="#icon-shield-alt"></use>
+                            </svg>
                             <div>
                                 <h4>Entorno Seguro</h4>
                                 <p>Entrenadores certificados especializados en niños</p>
@@ -450,7 +2235,9 @@
                     <a href="https://wa.me/593969476858?text=Hola,%20quiero%20información%20sobre%20Athletic%20Kids"
                         target="_blank" class="btn btn-primary">
                         <span>Más Información sobre Athletic Kids</span>
-                        <i class="fab fa-whatsapp"></i>
+                        <svg class="icon">
+                            <use href="#icon-whatsapp"></use>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -469,8 +2256,15 @@
                 <div class="testimonial-card reveal-on-scroll">
                     <div class="testimonial-content">
                         <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><i class="fas fa-star"></i><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg>
                         </div>
                         <p>"Increíble ambiente. Los entrenadores están siempre pendientes de ti y la comunidad es súper
                             motivadora. ¡He bajado 10kg en 3 meses!"</p>
@@ -488,8 +2282,15 @@
                 <div class="testimonial-card reveal-on-scroll" style="transition-delay: 0.2s;">
                     <div class="testimonial-content">
                         <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><i class="fas fa-star"></i><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg>
                         </div>
                         <p>"El mejor Crossfit de Mapasingue. Las clases son intensas pero adaptadas a tu nivel. Las
                             instalaciones siempre están impecables."</p>
@@ -507,8 +2308,15 @@
                 <div class="testimonial-card reveal-on-scroll" style="transition-delay: 0.4s;">
                     <div class="testimonial-content">
                         <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg><i class="fas fa-star"></i><svg class="icon">
+                                <use href="#icon-star"></use>
+                            </svg>
                         </div>
                         <p>"Me encanta la variedad de clases. Un día hago pesas, otro cycling y otro baile. ¡Nunca te
                             aburres! Súper recomendado."</p>
@@ -547,12 +2355,24 @@
                         <span class="period">/mes</span>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Acceso a zona de pesas</li>
-                        <li><i class="fas fa-check"></i> Zona cardio ilimitada</li>
-                        <li><i class="fas fa-check"></i> Vestuarios y duchas</li>
-                        <li><i class="fas fa-check"></i> Evaluación inicial</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Clases grupales</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Entrenador personal</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Acceso a zona de pesas</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Zona cardio ilimitada</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Vestuarios y duchas</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Evaluación inicial</li>
+                        <li class="disabled"><svg class="icon">
+                                <use href="#icon-times"></use>
+                            </svg> Clases grupales</li>
+                        <li class="disabled"><svg class="icon">
+                                <use href="#icon-times"></use>
+                            </svg> Entrenador personal</li>
                     </ul>
                     <a href="#contacto" class="btn btn-outline">Comenzar Ahora</a>
                 </div>
@@ -560,7 +2380,9 @@
                 <!-- Premium Plan (Featured) -->
                 <div class="pricing-card featured reveal-on-scroll">
                     <div class="popular-badge">
-                        <i class="fas fa-star"></i> Más Popular
+                        <svg class="icon">
+                            <use href="#icon-star"></use>
+                        </svg> Más Popular
                     </div>
                     <div class="pricing-header">
                         <h3>Premium</h3>
@@ -572,12 +2394,24 @@
                         <span class="period">/mes</span>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Todo del plan Básico</li>
-                        <li><i class="fas fa-check"></i> Clases grupales ilimitadas</li>
-                        <li><i class="fas fa-check"></i> Cycling y baile</li>
-                        <li><i class="fas fa-check"></i> Acceso a app móvil</li>
-                        <li><i class="fas fa-check"></i> Nutrición básica</li>
-                        <li><i class="fas fa-check"></i> Invitados (2 por mes)</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Todo del plan Básico</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Clases grupales ilimitadas</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Cycling y baile</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Acceso a app móvil</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Nutrición básica</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Invitados (2 por mes)</li>
                     </ul>
                     <a href="#contacto" class="btn btn-primary">Únete Ahora</a>
                 </div>
@@ -594,19 +2428,33 @@
                         <span class="period">/mes</span>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Todo del plan Premium</li>
-                        <li><i class="fas fa-check"></i> Entrenador personal (8 sesiones)</li>
-                        <li><i class="fas fa-check"></i> Plan nutricional personalizado</li>
-                        <li><i class="fas fa-check"></i> Evaluaciones mensuales</li>
-                        <li><i class="fas fa-check"></i> Acceso prioritario a clases</li>
-                        <li><i class="fas fa-check"></i> Masajes deportivos</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Todo del plan Premium</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Entrenador personal (8 sesiones)</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Plan nutricional personalizado</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Evaluaciones mensuales</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Acceso prioritario a clases</li>
+                        <li><svg class="icon">
+                                <use href="#icon-check"></use>
+                            </svg> Masajes deportivos</li>
                     </ul>
                     <a href="#contacto" class="btn btn-outline">Comenzar Ahora</a>
                 </div>
             </div>
 
             <div class="pricing-note">
-                <i class="fas fa-info-circle"></i>
+                <svg class="icon">
+                    <use href="#icon-info-circle"></use>
+                </svg>
                 <p>Todos los planes incluyen acceso 7 días a la semana. Sin permanencia mínima. Cancela cuando quieras.
                 </p>
             </div>
@@ -621,7 +2469,9 @@
                     <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop"
                         alt="CEO Omar Ponce" loading="lazy" width="400" height="500">
                     <div class="leadership-badge">
-                        <i class="fas fa-trophy"></i>
+                        <svg class="icon">
+                            <use href="#icon-trophy"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="leadership-content">
@@ -637,19 +2487,27 @@
 
                     <div class="leadership-values">
                         <div class="value-item">
-                            <i class="fas fa-fire"></i>
+                            <svg class="icon">
+                                <use href="#icon-fire"></use>
+                            </svg>
                             <span>Pasión</span>
                         </div>
                         <div class="value-item">
-                            <i class="fas fa-medal"></i>
+                            <svg class="icon">
+                                <use href="#icon-medal"></use>
+                            </svg>
                             <span>Excelencia</span>
                         </div>
                         <div class="value-item">
-                            <i class="fas fa-handshake"></i>
+                            <svg class="icon">
+                                <use href="#icon-handshake"></use>
+                            </svg>
                             <span>Compromiso</span>
                         </div>
                         <div class="value-item">
-                            <i class="fas fa-users"></i>
+                            <svg class="icon">
+                                <use href="#icon-users"></use>
+                            </svg>
                             <span>Comunidad</span>
                         </div>
                     </div>
@@ -689,7 +2547,9 @@
                         <a href="https://wa.me/593969476858?text=Hola,%20quiero%20comprar%20un%20termo%20Athletic%20Gym"
                             target="_blank" class="btn btn-primary">
                             <span>Comprar por WhatsApp</span>
-                            <i class="fab fa-whatsapp"></i>
+                            <svg class="icon">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -698,10 +2558,18 @@
                     <h3>💪 Más productos próximamente</h3>
                     <p>Estamos trabajando en traerte más gear oficial de Athletic Gym:</p>
                     <ul>
-                        <li><i class="fas fa-tshirt"></i> Camisetas de entrenamiento</li>
-                        <li><i class="fas fa-shopping-bag"></i> Bolsos y mochilas</li>
-                        <li><i class="fas fa-socks"></i> Accesorios deportivos</li>
-                        <li><i class="fas fa-gift"></i> Sets de regalo</li>
+                        <li><svg class="icon">
+                                <use href="#icon-tshirt"></use>
+                            </svg> Camisetas de entrenamiento</li>
+                        <li><svg class="icon">
+                                <use href="#icon-shopping-bag"></use>
+                            </svg> Bolsos y mochilas</li>
+                        <li><svg class="icon">
+                                <use href="#icon-socks"></use>
+                            </svg> Accesorios deportivos</li>
+                        <li><svg class="icon">
+                                <use href="#icon-gift"></use>
+                            </svg> Sets de regalo</li>
                     </ul>
                     <p class="merch-cta">¿Tienes sugerencias? <a href="https://www.instagram.com/athleticgym_23/"
                             target="_blank">Escríbenos en Instagram</a></p>
@@ -723,35 +2591,45 @@
                     class="instagram-item reveal-on-scroll">
                     <img src="assets/img/insta1.png" alt="Athletic Gym Instagram Post 1" loading="lazy">
                     <div class="instagram-overlay">
-                        <i class="fab fa-instagram"></i>
+                        <svg class="icon">
+                            <use href="#icon-instagram"></use>
+                        </svg>
                     </div>
                 </a>
                 <a href="https://www.instagram.com/athleticgym_23/" target="_blank"
                     class="instagram-item reveal-on-scroll" style="transition-delay: 0.1s;">
                     <img src="assets/img/insta2.jpg" alt="Athletic Gym Instagram Post 2" loading="lazy">
                     <div class="instagram-overlay">
-                        <i class="fab fa-instagram"></i>
+                        <svg class="icon">
+                            <use href="#icon-instagram"></use>
+                        </svg>
                     </div>
                 </a>
                 <a href="https://www.instagram.com/athleticgym_23/" target="_blank"
                     class="instagram-item reveal-on-scroll" style="transition-delay: 0.2s;">
                     <img src="assets/img/insta3.jpg" alt="Athletic Gym Instagram Post 3" loading="lazy">
                     <div class="instagram-overlay">
-                        <i class="fab fa-instagram"></i>
+                        <svg class="icon">
+                            <use href="#icon-instagram"></use>
+                        </svg>
                     </div>
                 </a>
                 <a href="https://www.instagram.com/athleticgym_23/" target="_blank"
                     class="instagram-item reveal-on-scroll" style="transition-delay: 0.3s;">
                     <img src="assets/img/insta4.jpg" alt="Athletic Gym Instagram Post 4" loading="lazy">
                     <div class="instagram-overlay">
-                        <i class="fab fa-instagram"></i>
+                        <svg class="icon">
+                            <use href="#icon-instagram"></use>
+                        </svg>
                     </div>
                 </a>
             </div>
 
             <div class="instagram-btn-container">
                 <a href="https://www.instagram.com/athleticgym_23/" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-instagram"></i>
+                    <svg class="icon">
+                        <use href="#icon-instagram"></use>
+                    </svg>
                     <span>Ver Perfil Completo</span>
                 </a>
             </div>
@@ -772,7 +2650,9 @@
 
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <svg class="icon">
+                                <use href="#icon-map-marker-alt"></use>
+                            </svg>
                         </div>
                         <div>
                             <h4>Ubicación</h4>
@@ -783,7 +2663,9 @@
 
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                            <svg class="icon">
+                                <use href="#icon-phone"></use>
+                            </svg>
                         </div>
                         <div>
                             <h4>Teléfono / WhatsApp</h4>
@@ -793,7 +2675,9 @@
 
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                            <svg class="icon">
+                                <use href="#icon-envelope"></use>
+                            </svg>
                         </div>
                         <div>
                             <h4>Email</h4>
@@ -803,7 +2687,9 @@
 
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
+                            <svg class="icon">
+                                <use href="#icon-clock"></use>
+                            </svg>
                         </div>
                         <div>
                             <h4>Horario</h4>
@@ -813,11 +2699,19 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/athleticgym_23/" target="_blank" aria-label="Instagram"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook"><svg class="icon">
+                                <use href="#icon-facebook"></use>
+                            </svg></a>
+                        <a href="https://www.instagram.com/athleticgym_23/" target="_blank" aria-label="Instagram"><svg
+                                class="icon">
+                                <use href="#icon-instagram"></use>
+                            </svg></a>
+                        <a href="#" aria-label="YouTube"><svg class="icon">
+                                <use href="#icon-youtube"></use>
+                            </svg></a>
+                        <a href="#" aria-label="TikTok"><svg class="icon">
+                                <use href="#icon-tiktok"></use>
+                            </svg></a>
                     </div>
                 </div>
 
@@ -851,7 +2745,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <span>Enviar Solicitud</span>
-                            <i class="fas fa-paper-plane"></i>
+                            <svg class="icon">
+                                <use href="#icon-paper-plane"></use>
+                            </svg>
                         </button>
                     </form>
                 </div>
@@ -860,7 +2756,9 @@
             <!-- Map Placeholder -->
             <div class="map-container reveal-on-scroll">
                 <div class="map-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
+                    <svg class="icon">
+                        <use href="#icon-map-marker-alt"></use>
+                    </svg>
                     <p>Encuéntranos en Google Maps</p>
                     <!-- Replace with actual Google Maps embed -->
                     <iframe title="Ubicación de Athletic Gym en Google Maps"
@@ -913,8 +2811,9 @@
                     <form class="newsletter-form">
                         <label for="newsletter-email" class="sr-only">Email para newsletter</label>
                         <input type="email" id="newsletter-email" placeholder="Tu email" required>
-                        <button type="submit" aria-label="Suscribirse al newsletter"><i
-                                class="fas fa-arrow-right"></i></button>
+                        <button type="submit" aria-label="Suscribirse al newsletter"><svg class="icon">
+                                <use href="#icon-arrow-right"></use>
+                            </svg></button>
                     </form>
                 </div>
             </div>
@@ -931,10 +2830,12 @@
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/593969476858" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <svg class="icon">
+            <use href="#icon-whatsapp"></use>
+        </svg>
     </a>
 
-    <script src="assets/js/script.js"></script>
+
 </body>
 
 </html>
