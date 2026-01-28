@@ -1593,3 +1593,91 @@ ul {
     white-space: nowrap;
     border-width: 0
 }
+
+/* How to Get There Section */
+.how-to-get-there {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: white;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 1px solid var(--gray-200);
+}
+
+.how-to-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.how-to-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    color: var(--gray-800);
+}
+
+.how-to-header p {
+    color: var(--gray-600);
+}
+
+.directions-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.btn-map {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    color: white;
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.btn-map i {
+    font-size: 1.25rem;
+}
+
+.btn-map:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-map.google {
+    background: #4285F4;
+}
+
+.btn-map.google:hover {
+    background: #3367d6;
+}
+
+.btn-map.waze {
+    background: #33CCFF;
+    color: var(--dark-navy); 
+}
+
+.btn-map.waze:hover {
+    background: #00a1d6;
+}
+
+.map-container {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 4px solid var(--gray-100);
+    height: 450px;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
