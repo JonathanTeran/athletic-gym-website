@@ -1746,4 +1746,49 @@ ul {
     font-size: 0.8rem;
     display: flex;
     gap: 2px;
+}/* Video Gallery Styles */
+.video-gallery {
+    padding: var(--spacing-3xl) 0;
+    background: var(--gray-50)
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg)
+}
+
+.video-item {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: black;
+    aspect-ratio: 9/16;
+    /* Portrait videos mostly? Or should I use 16/9? WhatsApp videos are often portrait. Let's assume mixed or portrait. */
+}
+
+/* Adjust aspect ratio if landscape is preferred or do a mix */
+/* Since they are WhatsApp videos, they are likely portrait. */
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block
+}
+
+.video-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 10
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-2xl);
+    transition: all var(--transition-base)
 }
