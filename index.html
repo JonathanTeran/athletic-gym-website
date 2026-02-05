@@ -708,6 +708,95 @@
         </div>
     </section>
 
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿No sabes qué plan elegir?</h2>
+                <p class="section-subtitle">Responde 3 preguntas y te decimos cuál es tu plan perfecto</p>
+            </div>
+
+            <div class="quiz-container reveal-on-scroll">
+                <!-- Progress Bar -->
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress" id="quizProgress" style="width: 33%"></div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="quiz-step active" id="step1">
+                    <h3>1. ¿Cuál es tu principal objetivo?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="selectQuizOption(1, 'weightloss')">
+                            <i class="fas fa-burn"></i>
+                            <span>Perder Peso</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(1, 'muscle')">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Ganar Músculo</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(1, 'health')">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Salud General</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="quiz-step" id="step2">
+                    <h3>2. ¿Cómo prefieres entrenar?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="selectQuizOption(2, 'solo')">
+                            <i class="fas fa-user"></i>
+                            <span>Solo / A mi ritmo</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(2, 'group')">
+                            <i class="fas fa-users"></i>
+                            <span>Clases Grupales</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(2, 'both')">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Ambos</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="quiz-step" id="step3">
+                    <h3>3. ¿Cuál es tu nivel de compromiso?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" onclick="selectQuizOption(3, 'try')">
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>Quiero probar (3 meses)</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(3, 'commit')">
+                            <i class="fas fa-star"></i>
+                            <span>Estoy comprometido (6 meses)</span>
+                        </button>
+                        <button class="quiz-option" onclick="selectQuizOption(3, 'lifestyle')">
+                            <i class="fas fa-trophy"></i>
+                            <span>Es mi estilo de vida (1 año)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="quiz-result hidden" id="quizResult">
+                    <div class="result-icon"><i class="fas fa-gift"></i></div>
+                    <h3>¡Tu Plan Ideal es el <span class="gradient-text" id="quizPlanName">Plan Anual</span>!</h3>
+                    <p id="quizPlanDesc">Basado en tus respuestas, este plan te ofrece el mejor valor para lograr tus
+                        objetivos.</p>
+                    <div class="result-price" id="quizPlanPrice">Solo $15.00/mes</div>
+                    <div class="quiz-actions">
+                        <a href="#contacto" class="btn btn-primary" id="quizCtaBtn">
+                            ¡Quiero este Plan! <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <button class="btn-text" onclick="resetQuiz()">Volver a empezar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section class="pricing" id="planes">
         <div class="container">

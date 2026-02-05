@@ -468,3 +468,102 @@ function initBMICalculator() {
 document.addEventListener('DOMContentLoaded', function () {
     initBMICalculator();
 });
+
+
+// =====================================================
+// QUIZ LOGIC
+// =====================================================
+
+let quizAnswers = {};
+
+function selectQuizOption(step, value) {
+    // Save Answer
+    quizAnswers[`step${step}`] = value;
+
+    // Animate click feedback (optional but nice)
+
+    const currentStepEl = document.getElementById(`step${step}`);
+    const nextStepEl = document.getElementById(`step${step + 1}`);
+    const progressBar = document.getElementById('quizProgress');
+
+    // Hide current step
+    currentStepEl.classList.remove('active');
+
+    if (step < 3) {
+        // Show next step
+        nextStepEl.classList.add('active');
+        // Update progress
+        progressBar.style.width = `${((step + 1) / 3) * 100}%`;
+    } else {
+        // Show Result
+        showQuizResult();
+        progressBar.parentElement.style.display = 'none'; // Hide progress bar on result
+    }
+}
+
+function showQuizResult() {
+    const resultEl = document.getElementById('quizResult');
+    const planNameEl = document.getElementById('quizPlanName');
+    const planDescEl = document.getElementById('quizPlanDesc');
+    const planPriceEl = document.getElementById('quizPlanPrice');
+
+    // Logic to determine plan
+    let plan = 'Anual';
+    let price = 'Solo $15.00/mes';
+    let desc = 'Basado en tus respuestas, este plan te ofrece el mejor valor para lograr tus objetivos.';
+
+    // Simple Logic based on Step 3 (Commitment)
+    if (quizAnswers.step3 === 'try') {
+        plan = 'Trimestral';
+        price = '$60.00 total ($20/mes)';
+        desc = 'Ideal para empezar y probar nuestra metodología sin un compromiso a largo plazo.';
+        // Customize based on Step 1
+        if (quizAnswers.step1 === 'weightloss') {
+            desc += ' Perfecto para tu reto de pérdida de peso de 90 días.';
+        }
+    } else if (quizAnswers.step3 === 'commit') {
+        plan = 'Semestral';
+        price = '$108.00 total ($18/mes)';
+        desc = 'El equilibrio perfecto entre compromiso y flexibilidad para ver resultados reales.';
+    } else {
+        // Annual is default
+        if (quizAnswers.step1 === 'muscle') {
+            desc = 'La construcción muscular requiere tiempo y constancia. Este plan es tu mejor aliado.';
+        }
+    }
+
+    planNameEl.textContent = `Plan ${plan}`;
+    planPriceEl.textContent = price;
+    planDescEl.textContent = desc;
+
+    resultEl.classList.remove('hidden');
+
+    // Update contact form dropdown automatically if it exists
+    const planSelect = document.getElementById('plan');
+    if (planSelect) {
+        // Map to value
+        let value = 'anual';
+        if (plan === 'Trimestral') value = 'trimestral';
+        if (plan === 'Semestral') value = 'semestral';
+        planSelect.value = value;
+    }
+}
+
+function resetQuiz() {
+    quizAnswers = {};
+
+    // Hide result
+    document.getElementById('quizResult').classList.add('hidden');
+
+    // Show step 1
+    document.getElementById('step1').classList.add('active');
+
+    // Reset progress
+    const progressBar = document.getElementById('quizProgress');
+    progressBar.style.width = '33%';
+    progressBar.parentElement.style.display = 'block';
+}
+
+function scrollToContactWithPlan() {
+    document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+}
