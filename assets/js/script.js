@@ -383,3 +383,88 @@ function toggleVideo(overlay) {
     };
     */
 }
+
+
+// =====================================================
+// BMI CALCULATOR LOGIC
+// =====================================================
+
+function initBMICalculator() {
+    const bmiForm = document.getElementById('bmiForm');
+
+    if (bmiForm) {
+        bmiForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heightCm = parseFloat(document.getElementById('height').value);
+
+            if (weight > 0 && heightCm > 0) {
+                // Calculate BMI
+                const heightM = heightCm / 100;
+                const bmi = weight / (heightM * heightM);
+                const bmiRounded = bmi.toFixed(1);
+
+                // Determine Category
+                let category, message, statusClass, meterWidth, planLink;
+
+                if (bmi < 18.5) {
+                    category = "Bajo Peso";
+                    statusClass = "underweight";
+                    message = "Es importante ganar masa muscular y fuerza. Nuestro <strong>Plan de Hipertrofia</strong> en la Zona de Pesas es ideal para ti.";
+                    meterWidth = "20%";
+                    planLink = "trimestral";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    category = "Peso Normal";
+                    statusClass = "normal";
+                    message = "¡Estás en un excelente estado! Mantén tu salud con nuestro <strong>CrossFit & Entrenamiento Funcional</strong>.";
+                    meterWidth = "50%";
+                    planLink = "semestral";
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    category = "Sobrepeso";
+                    statusClass = "overweight";
+                    message = "Podemos ayudarte a transformar esa energía extra en músculo. ¡Prueba nuestras clases de <strong>Intense Cycling</strong>!";
+                    meterWidth = "80%";
+                    planLink = "anual";
+                } else {
+                    category = "Obesidad";
+                    statusClass = "obese";
+                    message = "Tu salud es lo primero. Nuestros entrenadores diseñarán un plan de <strong>pérdida de grasa seguro y efectivo</strong> para ti.";
+                    meterWidth = "100%";
+                    planLink = "anual";
+                }
+
+                // Update UI
+                const resultSection = document.getElementById('bmiResult');
+                const bmiValueEl = document.getElementById('bmiValue');
+                const bmiStatusEl = document.getElementById('bmiStatus');
+                const bmiMessageEl = document.getElementById('bmiMessage');
+                const bmiMarker = document.getElementById('bmiMarker');
+
+                // Reset classes
+                bmiStatusEl.className = 'bmi-status';
+                bmiStatusEl.classList.add(statusClass);
+
+                bmiValueEl.textContent = bmiRounded;
+                bmiStatusEl.textContent = category;
+                bmiMessageEl.innerHTML = message;
+
+                // Animate Marker Position (0% to 100% mapped to BMI 10 to 40)
+                // Min BMI 14 (0%), Max BMI 40 (100%)
+                let markerPos = ((bmi - 14) / (40 - 14)) * 100;
+                if (markerPos < 0) markerPos = 0;
+                if (markerPos > 100) markerPos = 100;
+
+                bmiMarker.style.left = `${markerPos}%`;
+
+                // Show Result
+                resultSection.classList.remove('hidden');
+            }
+        });
+    }
+}
+
+// Initialize BMI Logic
+document.addEventListener('DOMContentLoaded', function () {
+    initBMICalculator();
+});
