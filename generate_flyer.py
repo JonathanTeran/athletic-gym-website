@@ -68,22 +68,24 @@ def create_flyer():
     c.drawCentredString(width/2, height - 4.9*inch, "Tu apoyo nos ayuda a seguir creciendo.")
     c.drawCentredString(width/2, height - 5.2*inch, "Escanea el código para dejarnos tu comentario.")
     
-    # 6. QR Code (Central-Bottom area)
+    # 6. QR Code
     qr_path = "assets/img/gym-review-qr.png"
     if os.path.exists(qr_path):
         qr = ImageReader(qr_path)
         qr_size = 3.6*inch
-        # Place QR below the message text
-        # Message 2 is at height - 5.2*inch. Let's put QR top at height - 5.6*inch
         qr_y = height - 5.6*inch - qr_size
         c.drawImage(qr, (width - qr_size)/2, qr_y, width=qr_size, height=qr_size)
     
-    # 7. Footer (Bottom)
+    # 7. Footer
     c.setFont("Helvetica-Bold", 26)
     c.setFillColor(dark_navy)
-    c.drawCentredString(width/2, 1.4*inch, "ATHLETIC GYM")
+    c.drawCentredString(width/2, 1.6*inch, "ATHLETIC GYM")
     
-    c.setFont("Helvetica-Oblique", 14)
+    c.setFont("Helvetica-Bold", 14)
+    c.setFillColor(colors.HexColor("#10b981")) # Success emerald color
+    c.drawCentredString(width/2, 1.3*inch, "athletic-gym.com")
+    
+    c.setFont("Helvetica-Oblique", 12)
     c.setFillColor(colors.grey)
     c.drawCentredString(width/2, 1.0*inch, "¡Gracias por ser parte de la familia!")
     
